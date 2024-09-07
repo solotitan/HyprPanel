@@ -1,5 +1,5 @@
 .calendar-menu-content * {
-  font-size: $font-size * $bar-menus-menu-clock-scaling/100;
+  font-size: $font-size * $bar-menus-menu-clock-scaling * 0.01;
 }
 
 .calendar-content-container {
@@ -10,7 +10,7 @@
   border: $bar-menus-border-size solid if($bar-menus-monochrome, $bar-menus-border-color, $bar-menus-menu-clock-border-color);
   border-radius: $bar-menus-border-radius;
   margin-right: 0.5em;
-  opacity: $bar-menus-opacity/100;
+  opacity: $bar-menus-opacity * 0.01;
 }
 
 .calendar-menu-item-container {
@@ -101,9 +101,9 @@
   min-width: 3em;
 
   .calendar-menu-weather.today.icon {
-    image {
+    label {
       color: if($bar-menus-monochrome, $bar-menus-icons-active, $bar-menus-menu-clock-weather-icon);
-      font-size: 6em;
+      font-size: 5em;
     }
   }
 
@@ -164,7 +164,8 @@
 
 .hourly-weather-icon {
   color: if($bar-menus-monochrome, $bar-menus-icons-active, $bar-menus-menu-clock-weather-hourly-icon);
-  margin-bottom: 0.5em;
+  margin-bottom: 0.25em;
+  font-size: 1.8em;
 }
 
 .hourly-weather-temp {

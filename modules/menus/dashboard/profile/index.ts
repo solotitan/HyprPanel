@@ -1,4 +1,3 @@
-import icons from "../../../icons/index.js";
 import powermenu from "../../power/helpers/actions.js";
 import { PowerOptions } from "lib/types/options.js";
 import GdkPixbuf from "gi://GdkPixbuf";
@@ -25,6 +24,13 @@ const Profile = () => {
         }
     };
 
+    const getIconForButton = (txtIcon: string) => {
+        return Widget.Label({
+            className: "txt-icon",
+            label: txtIcon
+        })
+    }
+
     return Widget.Box({
         class_name: "profiles-container",
         hpack: "fill",
@@ -35,15 +41,15 @@ const Profile = () => {
                 hexpand: true,
                 vertical: true,
                 children: [
-                    Widget.Icon({
+                    Widget.Box({
                         hpack: "center",
                         class_name: "profile-picture",
-                        icon: image.bind("value").as(i => {
+                        css: image.bind("value").as(i => {
                             try {
                                 GdkPixbuf.Pixbuf.new_from_file(i);
-                                return i;
+                                return `background-image: url("${i}")`
                             } catch {
-                                return "avatar-default-symbolic";
+                                return `background-image: url("${App.configDir}/assets/hyprpanel.png")`
                             }
                         }),
                     }),
@@ -69,30 +75,30 @@ const Profile = () => {
                         on_clicked: () => handleClick("shutdown"),
                         tooltip_text: "Shut Down",
                         vexpand: true,
-                        child: Widget.Icon(icons.powermenu.shutdown),
+                        child: getIconForButton("󰐥")
                     }),
                     Widget.Button({
                         class_name: "dashboard-button restart",
                         on_clicked: () => handleClick("reboot"),
                         tooltip_text: "Restart",
                         vexpand: true,
-                        child: Widget.Icon(icons.powermenu.reboot),
+                        child: getIconForButton("󰜉")
                     }),
                     Widget.Button({
                         class_name: "dashboard-button lock",
                         on_clicked: () => handleClick("logout"),
                         tooltip_text: "Log Out",
                         vexpand: true,
-                        child: Widget.Icon(icons.powermenu.logout),
+                        child: getIconForButton("󰿅")
                     }),
                     Widget.Button({
                         class_name: "dashboard-button sleep",
                         on_clicked: () => handleClick("sleep"),
                         tooltip_text: "Sleep",
                         vexpand: true,
-                        child: Widget.Icon(icons.powermenu.sleep),
+                        child: getIconForButton("󰤄")
                     }),
-                ],
+                ]
             }),
         ],
     });

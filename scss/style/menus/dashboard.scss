@@ -1,5 +1,5 @@
 .dashboard-menu-content * {
-  font-size: $font-size * $bar-menus-menu-dashboard-scaling/100;
+  font-size: $font-size * $bar-menus-menu-dashboard-scaling * 0.01;
 }
 
 .dashboard-content-items {
@@ -8,7 +8,7 @@
   background: if($bar-menus-monochrome, $bar-menus-background, $bar-menus-menu-dashboard-background-color);
   border: $bar-menus-border-size solid if($bar-menus-monochrome, $bar-menus-border-color, $bar-menus-menu-dashboard-border-color);
   border-radius: $bar-menus-border-radius;
-  opacity: $bar-menus-opacity/100;
+  opacity: $bar-menus-opacity * 0.01;
 
   button {
     border-radius: 0.4em;
@@ -26,7 +26,12 @@
     margin-bottom: 0.65em;
 
     .profile-picture {
-      font-size: 7.5em;
+      min-width: $bar-menus-menu-dashboard-profile-size;
+      min-height: $bar-menus-menu-dashboard-profile-size;
+      border-radius: $bar-menus-menu-dashboard-profile-radius;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
     }
 
     .profile-name {
@@ -48,17 +53,25 @@
         margin-bottom: 0.75em;
       }
 
-      image {
+      label {
         color: if($bar-menus-monochrome, $bar-menus-buttons-text, $bar-menus-menu-dashboard-shortcuts-text);
-        font-size: 1.5em;
+        font-size: 1.7em;
       }
 
       &.shutdown {
         background: if($bar-menus-monochrome, $bar-menus-buttons-default, $bar-menus-menu-dashboard-powermenu-shutdown);
+
+        label {
+          font-size: 1.9em;
+        }
       }
 
       &.restart {
         background: if($bar-menus-monochrome, $bar-menus-buttons-default, $bar-menus-menu-dashboard-powermenu-restart);
+
+        label {
+          font-size: 1.9em;
+        }
       }
 
       &.lock {
@@ -87,6 +100,7 @@
         }
       }
 
+
     }
   }
 
@@ -102,11 +116,11 @@
       }
     }
 
-    .card-button-left-section {
+    .card-button-section-container.visible {
       margin-right: 1.5em;
     }
 
-    .top-button {
+    .top-button.paired {
       margin-bottom: 1.5em;
     }
 
@@ -115,11 +129,11 @@
       margin-bottom: 0.65em;
 
       &.most-used {
-        margin-right: 0em;
+        margin-right: 0.65em;
       }
 
-      &.utilities {
-        margin-left: 0.65em;
+      &.utilities.paired {
+        margin-left: 0em;
       }
 
       button {
@@ -132,10 +146,10 @@
         }
 
         &.record.active {
-          background: if($bar-menus-monochrome, $bar-menus-buttons-default, $bar-menus-menu-dashboard-shortcuts-recording);
+          background: $red;
 
           &:hover {
-            background: transparentize(if($bar-menus-monochrome, $bar-menus-buttons-default, $bar-menus-menu-dashboard-shortcuts-recording), 0.5);
+            background: transparentize($red, 0.5);
           }
         }
 
@@ -289,7 +303,7 @@
     .stat {
       label {
         margin-right: 0.75em;
-        font-size: 1.5em;
+        font-size: 1.3em;
         min-width: 1.65em;
       }
 
