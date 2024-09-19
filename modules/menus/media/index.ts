@@ -1,4 +1,4 @@
-import DropdownMenu from "../DropdownMenu.js";
+import DropdownMenu from "../shared/dropdown/index.js";
 import { Media } from "./media.js";
 
 export default () => {
